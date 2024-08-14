@@ -1,0 +1,6 @@
+# Ignore the binary
+main
+
+# Ignore any potential build artifacts
+*.log
+*.tmp
