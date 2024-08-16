@@ -1,3 +1,4 @@
+# Stage 1: Build Stage
 FROM golang:alpine AS build
 
 WORKDIR /app
@@ -8,15 +9,15 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o main .
+RUN go build -v -o main .
 
-#stage 2
-
-FROM alpine:latest
+# Stage 2: Runtime Stage
+FROM alpine:3.18
 
 WORKDIR /app
 
-COPY --from=build /app .
+# Copy only the built binary from the build stage
+COPY --from=build /app/main .
 
 EXPOSE 3000
 
