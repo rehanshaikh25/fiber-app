@@ -18,6 +18,7 @@ WORKDIR /app
 
 # Copy only the built binary from the build stage
 COPY --from=build /app/main .
+COPY .env .
 
 EXPOSE 3000
 
