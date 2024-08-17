@@ -1,4 +1,4 @@
-module dockerised-go-api
+module fiber-app
 
 go 1.22.6
 
