@@ -10,7 +10,7 @@ import (
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
 
-    "dockerised-go-api/routes"
+    "fiber-app/routes"
 )
 
 func initDB() (*gorm.DB, error) {
