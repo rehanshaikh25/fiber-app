@@ -1,4 +1,4 @@
-simple api made in gofiber
+<h1>simple api made in gofiber</h1>
 
-docker image - docker pull quaintlotus8443/fiber-app:v1 <br>
-live @ - https://fiber-app-b27i.onrender.com/
+<strong>docker image</strong> - docker pull quaintlotus8443/fiber-app:v1 <br>
+<strong>live @</strong> - https://fiber-app-b27i.onrender.com/
