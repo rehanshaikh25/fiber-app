@@ -1,1 +1,5 @@
+#conplied binaries
 main
+
+#envoirment variable file
+.env
