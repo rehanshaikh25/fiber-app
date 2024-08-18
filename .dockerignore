@@ -1,6 +1,9 @@
 # Ignore the binary
 main
 
+#.env file
+.env
+
 # Ignore any potential build artifacts
 *.log
 *.tmp
