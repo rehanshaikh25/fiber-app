@@ -3,10 +3,9 @@ package main
 import (
     "fmt"
     "log"
-    "os"
 
     "github.com/gofiber/fiber/v2"
-    "github.com/joho/godotenv"
+    "github.com/spf13/viper" // Import viper
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
 
@@ -14,7 +13,7 @@ import (
 )
 
 func initDB() (*gorm.DB, error) {
-    dsn := os.Getenv("DATABASE_URL")
+    dsn := viper.GetString("DATABASE_URL") // Use viper to get DATABASE_URL
     db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
     if err != nil {
         return nil, err
@@ -28,10 +27,10 @@ func initDB() (*gorm.DB, error) {
     return db, nil
 }
 
-
 func main() {
-    err := godotenv.Load()
-    if err != nil {
+    viper.SetConfigName(".env") // Set the name of the config file
+    err := viper.ReadInConfig() // Read the config file
+    if err != nil { // Check for errors
         log.Fatal("Error loading .env file")
     }
 
@@ -44,9 +43,9 @@ func main() {
 
     routes.SetupRoutes(app, db)
 
-    port := os.Getenv("PORT")
-    if port == "" {
-        port = "3000"
+    port := viper.GetInt("PORT") // Use viper to get PORT
+    if port == 0 { // Viper returns int type, so check against 0
+        port = 3000 // Default port if not set
     }
-    log.Fatal(app.Listen(fmt.Sprintf(":%s", port)))
+    log.Fatal(app.Listen(fmt.Sprintf(":%d", port))) // Use %d for integer formatting
 }
